@@ -1,95 +1,263 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import React from "react";
+import {
+  IoLogoFacebook,
+  IoLogoTwitter,
+  IoLogoLinkedin,
+  IoLogoGithub,
+  IoLocationSharp,
+  IoCall,
+  IoMail,
+} from "react-icons/io5";
+import {
+  Button,
+  Header,
+  Wrapper,
+  SubWrapper,
+  Nav,
+  HeroSectionContent,
+  SectionHeading,
+  ServiceCard,
+  Footer,
+} from "./styleComponent/Header.style";
+import Link from "next/link";
+import HeroImage from "./assets/img/19199158.jpg";
+import ServiceIconOne from "./assets/icon/cloud-lock.png";
+import ServiceIconTwo from "./assets/icon/24-hours.png";
+import ServiceIconThree from "./assets/icon/server.png";
+import ServiceIconFour from "./assets/icon/live-chat.png";
+import ServiceIconFive from "./assets/icon/shuttle.png";
+import ServiceIconSix from "./assets/icon/secure.png";
+import Image from "next/image";
+import Navbar from "./component/Navbar/Navbar";
 
-export default function Home() {
+const Index = () => {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <Header>
+        <Navbar/>
+
+        <Wrapper>
+          <SubWrapper>
+            <HeroSectionContent>
+              <div className="detail">
+                <h1>
+                  Unleash the potential of <span className="fav-color">AI</span>{" "}
+                  and <span className="fav-color">Machine</span> learning
+                </h1>
+                <p>
+                  Machine learning algorithms build a model based on sample
+                  data, known as training data, in order to make predictions or
+                  decisions...
+                </p>
+
+                <Button>
+                  <span>Get Started</span>
+                  <span></span>
+                </Button>
+              </div>
+              <div className="img">
+                <Image
+                  src={HeroImage}
+                  alt="heroimage"
+                  width={500}
+                  height={500}
+                />
+              </div>
+            </HeroSectionContent>
+          </SubWrapper>
+        </Wrapper>
+      </Header>
+
+      {/* First Section Start Here */}
+      <Wrapper>
+        <SubWrapper>
+          <SectionHeading>
+            <h1>Our Wonderful Services</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Repudiandae et eaque, quo maiores omnis laudantium pariatur saepe
+              eius consequuntur.
+            </p>
+          </SectionHeading>
+
+          <ServiceCard>
+            <div className="card">
+              <div className="card-header">
+                <div className="icon">
+                  <Image
+                    src={ServiceIconOne}
+                    alt="icon"
+                    width={200}
+                    height={200}
+                  />
+                </div>
+                <h2>Secure</h2>
+              </div>
+              <div className="detail">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Repudiandae, veniam totam provident incidunt ab amet.
+                </p>
+              </div>
+            </div>
+
+            <div className="card card-down">
+              <div className="card-header">
+                <div className="icon">
+                  <Image
+                    src={ServiceIconTwo}
+                    alt="icon"
+                    width={200}
+                    height={200}
+                  />
+                </div>
+                <h2>24 Hours</h2>
+              </div>
+              <div className="detail">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Repudiandae, veniam totam provident incidunt ab amet.
+                </p>
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="card-header">
+                <div className="icon">
+                  <Image
+                    src={ServiceIconThree}
+                    alt="icon"
+                    width={200}
+                    height={200}
+                  />
+                </div>
+                <h2>Clouding</h2>
+              </div>
+              <div className="detail">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Repudiandae, veniam totam provident incidunt ab amet.
+                </p>
+              </div>
+            </div>
+            <div className="card ">
+              <div className="card-header">
+                <div className="icon">
+                  <Image
+                    src={ServiceIconFour}
+                    alt="icon"
+                    width={200}
+                    height={200}
+                  />
+                </div>
+                <h2>Help Center</h2>
+              </div>
+              <div className="detail">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Repudiandae, veniam totam provident incidunt ab amet.
+                </p>
+              </div>
+            </div>
+
+            <div className="card card-down">
+              <div className="card-header">
+                <div className="icon">
+                  <Image
+                    src={ServiceIconFive}
+                    alt="icon"
+                    width={200}
+                    height={200}
+                  />
+                </div>
+                <h2>2x Fast</h2>
+              </div>
+              <div className="detail">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Repudiandae, veniam totam provident incidunt ab amet.
+                </p>
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="card-header">
+                <div className="icon">
+                  <Image
+                    src={ServiceIconSix}
+                    alt="icon"
+                    width={200}
+                    height={200}
+                  />
+                </div>
+                <h2>Verified</h2>
+              </div>
+              <div className="detail">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Repudiandae, veniam totam provident incidunt ab amet.
+                </p>
+              </div>
+            </div>
+          </ServiceCard>
+        </SubWrapper>
+      </Wrapper>
+
+      {/* Footer Section Start Here */}
+      <Footer>
+        <div className="footer-container">
+          <div className="footer-address">
+            <div className="item">
+              <div className="icon">
+                <IoLocationSharp />
+              </div>
+              <div className="text">
+                <p>21 Revolution Street</p>
+                <h3>Karachi</h3>
+              </div>
+            </div>
+            <div className="item">
+              <div className="icon">
+                <IoCall />
+              </div>
+              <div className="text">
+                <h3>+1 555 1234567</h3>
+              </div>
+            </div>
+            <div className="item">
+              <div className="icon">
+                <IoMail />
+              </div>
+              <div className="text">
+                <h3>dev.shamama@gmail.com</h3>
+              </div>
+            </div>
+          </div>
+          <div className="footer-about">
+            <h2>About the company</h2>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum
+              incidunt tenetur ipsum optio.
+            </p>
+            <div className="social-icon-list">
+              <div className="social-icon">
+                <IoLogoFacebook />
+              </div>
+              <div className="social-icon">
+                <IoLogoLinkedin />
+              </div>
+              <div className="social-icon">
+                <IoLogoGithub />
+              </div>
+              <div className="social-icon">
+                <IoLogoTwitter />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </Footer>
+    </>
+  );
+};
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
-}
+export default Index;
