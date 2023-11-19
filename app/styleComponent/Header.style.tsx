@@ -11,14 +11,18 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #141414;
+  background-color: #424242;
   .headerContent {
     display: flex;
     flex-direction: row;
     align-items: center;
     .logo {
+      a {
+        color: white;
+        text-decoration: none;
+
+      }
       margin: 0 20px;
-      color: white;
     }
     .menu {
       display: flex;
@@ -28,6 +32,8 @@ export const Nav = styled.nav`
       gap: 20px;
       a {
         text-decoration: none;
+        color: white;
+
       }
       a li {
         list-style: none;
@@ -84,6 +90,11 @@ export const Button = styled.button`
   border-radius: 6px;
   position: relative;
   background: none;
+  a{
+       color: white;
+        text-decoration: none;
+
+  }
 
   &::before {
     position: absolute;
