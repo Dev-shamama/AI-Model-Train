@@ -1,8 +1,9 @@
+"use client"
 import { Button, Nav } from "@/app/styleComponent/Header.style";
 import Link from "next/link";
 import React from "react";
-
 const Navbar = () => {
+  const time = Date.now();
   return (
     <Nav>
       <div className="headerContent">

@@ -13,13 +13,11 @@ import {
   Header,
   Wrapper,
   SubWrapper,
-  Nav,
   HeroSectionContent,
   SectionHeading,
   ServiceCard,
   Footer,
 } from "./styleComponent/Header.style";
-import Link from "next/link";
 import HeroImage from "./assets/img/19199158.jpg";
 import ServiceIconOne from "./assets/icon/cloud-lock.png";
 import ServiceIconTwo from "./assets/icon/24-hours.png";

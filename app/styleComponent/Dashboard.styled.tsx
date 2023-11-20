@@ -44,55 +44,68 @@ export const DashboardContainer = styled.div`
       margin: 10px 0 80px 0;
       padding: 20px;
 
-      .question {
-        /* margin: 15px 0; */
-        margin-top: 20px;
-        padding: 15px;
-        background-color: #212121;
-        border-radius: 6px 6px 0 0;
-      }
-      .ai-replay {
-        padding: 15px;
-        background-color: #616161;
-        border-radius: 0 0 6px 6px;
-      }
-    }
-
-    .prompt-bar {
-      width: calc(100% - 250px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px;
-      background-color: #424242;
-      position: fixed;
-      bottom: 0;
-
-      .prompt-container {
-        background-color: #424242;
-        min-width: 500px;
-        padding: 5px 20px;
-        border-radius: 8px;
+      .response-loading {
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: row;
-        box-shadow: 0 11px 15px -7px rgb(0 0 0 / 20%),
-          0 24px 38px 3px rgb(0 0 0 / 14%), 0 9px 46px 8px rgb(0 0 0 / 12%);
+        padding: 20px;
+      }
+    }
 
-        input {
-          width: 100%;
-          height: 100%;
-          padding: 10px 0;
-          border-radius: 8px;
-          background: none;
-          border: none;
-          outline: none;
-          color: gray;
-        }
-        span svg {
-          color: gray;
-        }
+    .question {
+      /* margin: 15px 0; */
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #212121;
+      border-radius: 6px 6px 0 0;
+    }
+    .ai-replay {
+      padding: 15px;
+      background-color: #616161;
+      border-radius: 0 0 6px 6px;
+    }
+  }
+
+  .prompt-bar {
+    width: calc(100% - 250px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: #424242;
+    position: fixed;
+    bottom: 0;
+
+    .prompt-container {
+      background-color: #424242;
+      min-width: 500px;
+      padding: 5px 20px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      box-shadow: 0 11px 15px -7px rgb(0 0 0 / 20%),
+        0 24px 38px 3px rgb(0 0 0 / 14%), 0 9px 46px 8px rgb(0 0 0 / 12%);
+
+      input {
+        width: 100%;
+        height: 100%;
+        padding: 10px 0;
+        border-radius: 8px;
+        background: none;
+        border: none;
+        outline: none;
+        color: gray;
+      }
+      button {
+        cursor: pointer;
+        height: 100%;
+        padding: 10px;
+        background: none;
+        border: none;
+        color: gray;
       }
     }
   }
@@ -176,7 +189,6 @@ export const HistoryContainer = styled.div`
     justify-content: center;
     align-items: center;
     padding: 20px 0;
-    
   }
 
   table {
@@ -210,7 +222,7 @@ export const HistoryContainer = styled.div`
             width: 100%;
           }
         }
-          &:last-child {
+        &:last-child {
           border-bottom: none;
         }
       }
