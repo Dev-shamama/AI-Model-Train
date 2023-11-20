@@ -1,13 +1,5 @@
 # chatgpt-nodejs
-• provides to chat with chatgpt by your openai api key
-
-2. Send request to http://localhost:8000/your_api_link as
-
-```
-{
-  "question": "your question?"
-}
-```
+• provides to chat with chatgpt by your OPENAI API KEY.
 
 1. Create your .env file as
 
@@ -20,7 +12,7 @@ NEXT_PUBLIC_BASE_URL = <BASE_URL>
 ```
 
 
-## Installation
+## Installation & Run
 
 Install project with npm
 
