@@ -3,7 +3,7 @@
 
 1. Create your .env file as
 
-``` 
+```bash
 OPENAI_API_KEY = <API_KEY>
 NEXT_PUBLIC_DB_URL = <_DB_URL>
 NEXT_PUBLIC_SECRET_KEY = <SECRET_KEY>
