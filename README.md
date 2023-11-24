@@ -1,6 +1,6 @@
 # chatgpt-nodejs
-• provides to chat with chatgpt by your OPENAI API KEY.
 
+• provides to chat with chatgpt by your OPENAI API KEY.
 
 ## Installation & Run
 
@@ -11,7 +11,7 @@
 
   cd <project-name>
 
-  npm install && npm run dev    
+  npm install && npm run dev
 ```
 
 2. Create your .env file as
@@ -28,3 +28,9 @@ GITHUB_CLIENT_SECRET  = <GITHUB_SECRET_ID>
 FACEBOOK_CLIENT_ID = <FACEBOOK_CLIENT_ID>
 FACEBOOK_CLIENT_SECRET = <FACEBOOK_SECRET_ID>
 ```
+
+## Important Information
+
+You data train file type `json`, `pdf`, `txt`, `csv` like this type of file your file put inside doc folder and your working perfectly and auto.
+
+If you have code or specific questions about working with files in a programming context, please share more details so I can better understand and assist you.
