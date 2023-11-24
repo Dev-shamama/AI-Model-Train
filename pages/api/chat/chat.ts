@@ -70,7 +70,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
         const responseData = await askModel(receiveData.prompt);
 
-        console.log(user)
 
         const dataSave = new History({
             userId: user._id,

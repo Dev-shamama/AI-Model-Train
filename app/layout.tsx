@@ -6,9 +6,8 @@ import Favicon from "/public/ideas.png";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthenticationProvider } from "@/context/AuthContext";
-
 import { GlobalStyle } from "./global.style";
-
+import LoginProvider from "./LoginProvider";
 const inter = Mulish({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -33,7 +32,9 @@ export default function RootLayout({
         <ToastContainer />
         <GlobalStyle />
         <ThemeSender>
-          <AuthenticationProvider>{children}</AuthenticationProvider>
+          <AuthenticationProvider>
+            <LoginProvider>{children}</LoginProvider>
+          </AuthenticationProvider>
         </ThemeSender>
       </body>
     </html>

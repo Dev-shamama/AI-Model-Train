@@ -99,9 +99,11 @@ export const LoginContainer = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 5px;
-      margin-top: 20px;
+      gap: 14px;
+      margin-top: 10px;
+      flex-direction: column;
       .login-provider-button {
+        min-width: 200px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -121,12 +123,9 @@ export const LoginContainer = styled.div`
 
         &:hover {
           color: ${(props) => props.theme.favColor};
-        border: 1px solid ${(props) => props.theme.favColor};
-          
+          border: 1px solid ${(props) => props.theme.favColor};
         }
       }
-
-
     }
   }
   .bg-img {
@@ -138,16 +137,20 @@ export const LoginContainer = styled.div`
       width: 100%;
       height: 100%;
       object-fit: cover;
-      
     }
   }
-  .bg-img::after{
+  .bg-img::after {
     content: "";
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-  background: linear-gradient(90deg, #020024cf 0%, #090979b5 35%, #00d5ff9a 100%);
+    background: linear-gradient(
+      90deg,
+      #020024cf 0%,
+      #090979b5 35%,
+      #00d5ff9a 100%
+    );
   }
 `;

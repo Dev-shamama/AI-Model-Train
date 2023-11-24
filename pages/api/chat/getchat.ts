@@ -1,3 +1,4 @@
+import connectDB from "@/config/db";
 import { errorHandler } from "@/middleware/error";
 import History from "@/model/ChatHistory";
 import { isLogged } from "@/utils/isLogged";
@@ -10,8 +11,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         return errorHandler(res, 400, "ONLY GET METHOD IS ALLOWED");
     }
     try {
+        await connectDB()
         const user = await isLogged(req, res);
-
         const data = await History.find({userId: user._id})
 
         res.status(200).json({

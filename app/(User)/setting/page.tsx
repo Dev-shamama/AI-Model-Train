@@ -1,17 +1,12 @@
-"use client"
+"use client";
 import { ProfileSetting } from "@/app/styleComponent/Dashboard.styled";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import ProfileImage from "@/app/assets/img/profileimage.jpg";
-import { useAuth } from "@/context/AuthContext";
-import { redirect } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const Setting = () => {
-  const auth = useAuth();
-
-  if(auth?.isAuth === false) {
-    redirect('/login')
-  }
+  const { data: session } = useSession();
 
   return (
     <>
@@ -23,21 +18,26 @@ const Setting = () => {
         <div className="top-part">
           <div className="profile-img">
             <div className="img">
-              <Image src={ProfileImage} alt="Profile_Image" />
+              <Image
+                src={session?.user?.image ? session?.user?.image : ProfileImage}
+                alt="Profile_Image"
+                width={100}
+                height={100}
+              />
             </div>
-            <h3>{auth?.userData?.name}</h3>
-            <p>{auth?.userData?.email}</p>
+            <h3>{session?.user?.name}</h3>
+            <p>{session?.user?.email}</p>
           </div>
           <div className="profile-detail">
             <table>
               <tbody>
                 <tr>
                   <th>Full Name</th>
-                  <td>{auth?.userData?.name}</td>
+                  <td>{session?.user?.name}</td>
                 </tr>
                 <tr>
                   <th>Email</th>
-                  <td>{auth?.userData?.email}</td>
+                  <td>{session?.user?.email}</td>
                 </tr>
                 <tr>
                   <th>Gender</th>

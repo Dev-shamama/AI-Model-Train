@@ -4,6 +4,7 @@ import {
   IoChatbubblesOutline,
   IoLogoFacebook,
   IoLogoGoogle,
+  IoLogoGithub
 } from "react-icons/io5";
 import { FormEvent, useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -13,6 +14,8 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { GoHistory } from "react-icons/go";
 import Link from "next/link";
+import { signIn, useSession, signOut } from "next-auth/react";
+
 ////////////////////////////////////////
 // Sign Up Form
 ////////////////////////////////////////
@@ -82,22 +85,6 @@ export const SignUpForm = () => {
           </button>
         </div>
       </form>
-
-      <div className="loginProvider">
-        <button className="login-provider-button">
-          <div className="icon">
-            <IoLogoGoogle />
-          </div>
-          <span>Google</span>
-        </button>
-
-        <button className="login-provider-button">
-          <div className="icon">
-            <IoLogoFacebook />
-          </div>
-          <span>Facebook</span>
-        </button>
-      </div>
     </>
   );
 };
@@ -106,10 +93,8 @@ export const SignUpForm = () => {
 // Login Form
 ////////////////////////////////////////
 export const LoginForm = () => {
-  const router = useRouter();
-  const auth = useAuth();
-
-  if (auth?.isAuth === true) {
+  const { status } = useSession();
+  if (status == "authenticated") {
     redirect("/dashboard");
   }
 
@@ -121,32 +106,8 @@ export const LoginForm = () => {
 
   const LoginHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setBtnStatus(true);
-    setBtnText("Loading...");
-
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/login`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }),
-      }
-    );
-
-    const result = await response.json();
-
-    if (result.success === true) {
-      toast.success(result.message);
-      localStorage.setItem("token", result.token);
-      auth?.setIsAuth(true);
-      router.refresh();
-    } else {
-      toast.error(result.message);
-    }
-    setBtnStatus(false);
-    setBtnText("Login");
-  };
-
+    const data = { email, password };
+    signIn("credentials", { ...data, redirect: false }).then((data) => null)}
   return (
     <>
       <form className="login-form" onSubmit={LoginHandler}>
@@ -171,19 +132,35 @@ export const LoginForm = () => {
       </form>
 
       <div className="loginProvider">
-        <button className="login-provider-button">
+        <button
+          className="login-provider-button"
+          onClick={() => signIn("google")}
+        >
           <div className="icon">
             <IoLogoGoogle />
           </div>
           <span>Google</span>
         </button>
 
-        <button className="login-provider-button">
+        <button className="login-provider-button"
+          onClick={() => signIn("facebook")}
+
+        >
           <div className="icon">
             <IoLogoFacebook />
           </div>
           <span>Facebook</span>
         </button>
+
+        <button className="login-provider-button"
+          onClick={() => signIn("github")}
+        >
+          <div className="icon">
+            <IoLogoGithub />
+          </div>
+          <span>Facebook</span>
+        </button>
+
       </div>
     </>
   );
@@ -193,17 +170,11 @@ export const LoginForm = () => {
 // Dashboard
 ////////////////////////////////////////
 export const ChatShowPrompt = () => {
-  const auth = useAuth();
-  const router = useRouter();
   const [prompt, setPrompt] = useState("");
   const [history, setHistory] = useState([]);
-
   const [btnStatus, setBtnStatus] = useState(false);
   const [btnText, setBtnText] = useState<any>(<IoArrowRedoSharp />);
 
-  if (auth?.isAuth === false) {
-    redirect("/login");
-  }
 
   const getHistory = async () => {
     try {
@@ -211,10 +182,8 @@ export const ChatShowPrompt = () => {
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/chat/getchat`,
         {
           method: "GET",
-          headers: {
-            "content-type": "application/json",
-            Authorization: `${localStorage.getItem("token")}` || "",
-          },
+          headers: {"content-type": "application/json"},
+          credentials: "include"
         }
       );
 
@@ -223,7 +192,6 @@ export const ChatShowPrompt = () => {
       }
 
       const result = await response.json();
-
       if (result.success === true) {
         setHistory(result.data);
       }
@@ -246,10 +214,8 @@ export const ChatShowPrompt = () => {
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/chat/chat`,
         {
           method: "POST",
-          headers: {
-            "content-type": "application/json",
-            Authorization: `${localStorage.getItem("token")}` || "",
-          },
+          headers: {"content-type": "application/json"},
+          credentials: "include",
           body: JSON.stringify({ prompt }),
         }
       );
@@ -259,7 +225,6 @@ export const ChatShowPrompt = () => {
       }
 
       const result = await response.json();
-      console.log(result);
       if (result.success === true) {
         getHistory();
       }
@@ -333,15 +298,11 @@ export const ChatShowPrompt = () => {
 ////////////////////////////////////////
 export const MaintainHistory = () => {
   const router = useRouter();
-  const auth = useAuth();
 
   dayjs.extend(relativeTime);
 
   const [history, setHistory] = useState([]);
 
-  if (auth?.isAuth === false) {
-    redirect("/login");
-  }
 
   const getHistory = async () => {
     try {
@@ -349,10 +310,9 @@ export const MaintainHistory = () => {
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/chat/getchat`,
         {
           method: "GET",
-          headers: {
-            "content-type": "application/json",
-            Authorization: `${localStorage.getItem("token")}` || "",
-          },
+          headers: {"content-type": "application/json"},
+          credentials: "include"
+
         }
       );
 
@@ -401,12 +361,16 @@ export const MaintainHistory = () => {
                   <tr>
                     <th>Id</th>
                     <th>Prompt</th>
+                    <th>Operation</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>{index + 1}</td>
                     <td>{item.prompt}</td>
+                    <td>
+                      <Link href={`/history/${item._id}`}>View</Link>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -422,11 +386,14 @@ export const MaintainHistory = () => {
 // Logout Btn
 ////////////////////////////////////////
 export const LogoutBtn = () => {
-  const auth = useAuth();
-
+  const LogoutProvider = () => {
+    signOut();
+  };
   return (
-    <Link href="#" onClick={() => auth?.Logout()}>
-      Logout
-    </Link>
+    <>
+      <Link href="#" onClick={LogoutProvider}>
+        Logout
+      </Link>
+    </>
   );
 };
